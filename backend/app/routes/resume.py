@@ -3,6 +3,7 @@ from app.services.pdf_parser import extract_text_from_pdf
 from app.services.skill_extractor import extract_skills
 from fastapi import Form
 from app.services.ats_scorer import calculate_ats_score
+from app.services.ai_feedback import generate_ai_feedback_llm
 import os
 
 def detect_sections(text: str):
@@ -38,6 +39,35 @@ def generate_suggestions(missing_skills, sections):
         )
 
     return suggestions
+
+def generate_ai_feedback(resume_text, missing_skills, ats_score):
+
+    feedback = []
+
+    # Score-based feedback
+    if ats_score < 50:
+        feedback.append("Your resume has low ATS compatibility. Improve keyword alignment with job description.")
+
+    elif ats_score < 75:
+        feedback.append("Your resume is decent but missing key industry keywords.")
+
+    else:
+        feedback.append("Your resume is well optimized for ATS systems.")
+
+    # Skill-based feedback
+    if len(missing_skills) > 0:
+        feedback.append(
+            f"You are missing important skills like {', '.join(missing_skills[:3])}. These are commonly required in similar job roles."
+        )
+
+    # Resume improvement advice
+    if "project" not in resume_text.lower():
+        feedback.append("Add more project descriptions with real-world impact.")
+
+    if "internship" not in resume_text.lower():
+        feedback.append("Include internship or practical experience to strengthen your profile.")
+
+    return feedback
 
 def calculate_final_score(skill_score, section_score):
 
@@ -196,6 +226,15 @@ async def analyze_resume(
         final_score
     )
 
+    try:
+        ai_feedback = generate_ai_feedback_llm(
+            resume_text,
+            job_description,
+            final_score
+        )
+    except Exception as e:
+        ai_feedback = f"AI feedback unavailable: {str(e)}"
+
     return {
         "skill_match_score": result["score"],
         "ats_score": final_score,
@@ -212,5 +251,6 @@ async def analyze_resume(
         "experience_detected": experience,
         "projects_detected": projects,
         "project_count": len(projects),
+        "ai_feedback": ai_feedback,
         "suggestions": suggestions
     }
