@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import axios from "axios";
 import jsPDF from "jspdf";
 import {
@@ -220,13 +221,15 @@ return (
 
       {/* Analyze Button */}
       <div className="mt-6 text-center">
-        <button
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           onClick={analyzeResume}
           disabled={loading}
           className={`px-8 py-3 rounded-xl font-semibold transition-all ${darkMode ? "bg-blue-600 hover:bg-blue-500 text-white" : "bg-black hover:bg-gray-800 text-white"}`}
         >
           {loading ? "Analyzing..." : "Analyze Resume"}
-        </button>
+        </motion.button>
         {result && (
           <button
             onClick={downloadPDF}
@@ -239,10 +242,19 @@ return (
 
       {/* Results Dashboard */}
       {result && (
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
 
           {/* ATS Score Card */}
-          <div className={`p-6 rounded-2xl shadow-xl backdrop-blur-md border border-white/10 ${darkMode ? "bg-gray-800 text-white" : "bg-white"}`}>
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.2 }}
+            className={`p-6 rounded-2xl shadow-xl backdrop-blur-md border border-white/10 ${darkMode ? "bg-gray-800 text-white" : "bg-white"}`}
+          >
             <h3 className={`text-lg font-semibold ${darkMode ? "text-white" : "text-black"}`}>
               ATS Score
             </h3>
@@ -276,7 +288,7 @@ return (
               </ResponsiveContainer>
             </div>
 
-          </div>
+          </motion.div>
 
           {/* Strength Card */}
           <div className={`p-6 rounded-2xl shadow-xl backdrop-blur-md border border-white/10 ${darkMode ? "bg-gray-800 text-white" : "bg-white"}`}>
@@ -304,7 +316,7 @@ return (
             <p>Total Resume Skills: {result.total_resume_skills}</p>
           </div>
 
-        </div>
+        </motion.div>
       )}
 
       {/* Detailed Sections */}
