@@ -4,6 +4,9 @@ from app.services.skill_extractor import extract_skills
 from fastapi import Form
 from app.services.ats_scorer import calculate_ats_score
 from app.services.ai_feedback import generate_ai_feedback_llm
+from app.services.parser import parse_resume
+from app.services.resume_rewriter import rewrite_resume
+from app.services.interview_generator import generate_interview_questions
 import os
 
 def detect_sections(text: str):
@@ -235,6 +238,20 @@ async def analyze_resume(
     except Exception as e:
         ai_feedback = f"AI feedback unavailable: {str(e)}"
 
+    parsed_data = parse_resume(
+        resume_text,
+        resume_skills
+    )
+
+    rewritten_resume = rewrite_resume(
+        resume_text
+    )
+
+    interview_questions = generate_interview_questions(
+        resume_skills,
+        projects
+    )
+
     return {
         "skill_match_score": result["score"],
         "ats_score": final_score,
@@ -252,5 +269,8 @@ async def analyze_resume(
         "projects_detected": projects,
         "project_count": len(projects),
         "ai_feedback": ai_feedback,
+        "parsed_data": parsed_data,
+        "resume_rewrite": rewritten_resume,
+        "interview_questions": interview_questions,
         "suggestions": suggestions
     }
