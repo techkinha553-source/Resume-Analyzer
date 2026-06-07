@@ -96,6 +96,24 @@ def get_resume_strength(score):
 
     return "Needs Improvement"
 
+
+# New function to calculate job match score
+def calculate_job_match(resume_skills, jd_skills):
+
+    matched = len(
+        set(resume_skills) & set(jd_skills)
+    )
+
+    total = max(
+        len(jd_skills),
+        1
+    )
+
+    return round(
+        (matched / total) * 100,
+        2
+    )
+
 import re
 
 def extract_experience(text):
@@ -230,13 +248,27 @@ async def analyze_resume(
     )
 
     try:
-        ai_feedback = generate_ai_feedback_llm(
+        ai_response = generate_ai_feedback_llm(
             resume_text,
             job_description,
             final_score
         )
+
+        if isinstance(ai_response, dict):
+            ai_feedback = ai_response.get("ai_feedback", [])
+            ai_resume_strength = ai_response.get(
+                "resume_strength",
+                strength
+            )
+        else:
+            ai_feedback = ai_response
+            ai_resume_strength = strength
+
     except Exception as e:
-        ai_feedback = f"AI feedback unavailable: {str(e)}"
+        ai_feedback = [
+            f"AI feedback unavailable: {str(e)}"
+        ]
+        ai_resume_strength = strength
 
     parsed_data = parse_resume(
         resume_text,
@@ -252,6 +284,11 @@ async def analyze_resume(
         projects
     )
 
+    job_match_score = calculate_job_match(
+        resume_skills,
+        jd_skills
+    )
+
     return {
         "skill_match_score": result["score"],
         "ats_score": final_score,
@@ -264,7 +301,7 @@ async def analyze_resume(
         "sections": sections,
         "section_score": sum(sections.values()),
         "section_percentage": (sum(sections.values()) / 5) * 100,
-        "resume_strength": strength,
+        "resume_strength": ai_resume_strength,
         "experience_detected": experience,
         "projects_detected": projects,
         "project_count": len(projects),
@@ -272,5 +309,6 @@ async def analyze_resume(
         "parsed_data": parsed_data,
         "resume_rewrite": rewritten_resume,
         "interview_questions": interview_questions,
+        "job_match_score": job_match_score,
         "suggestions": suggestions
     }
