@@ -104,9 +104,12 @@ export default function Signup() {
             className="w-full bg-white/5 border border-white/10 text-white p-4 rounded-xl mb-6 outline-none"
           />
 
-          <button className="w-full bg-linear-to-r from-violet-500 to-pink-500 text-white font-semibold py-4 rounded-xl hover:scale-[1.02] transition">
+          <Link
+            href="/"
+            className="block w-full text-center bg-linear-to-r from-violet-500 to-pink-500 text-white font-semibold py-4 rounded-xl hover:scale-[1.02] transition"
+          >
             Create Free Account
-          </button>
+          </Link>
 
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">

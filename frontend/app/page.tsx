@@ -38,7 +38,7 @@ export default function Home() {
           <div className="mt-10 flex justify-center gap-4">
 
             <Link
-              href="/analyzer"
+              href="/login"
               className="
                           bg-linear-to-r
                           from-sky-500
