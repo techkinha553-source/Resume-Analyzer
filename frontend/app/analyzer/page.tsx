@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import jsPDF from "jspdf";
+import Link from "next/link";
 import {
   PieChart,
   Pie,
@@ -212,10 +213,21 @@ return (
       <h2 className="text-xl font-bold mb-8">ATS Dashboard</h2>
 
       <nav className="flex flex-col gap-4 text-sm">
-        <a className="hover:opacity-70 font-bold">📄 Resume Analyzer</a>
-        <a className="hover:opacity-70 font-bold">📊 Analytics</a>
-        <a className="hover:opacity-70 font-bold">🤖 AI Insights</a>
-        <a className="hover:opacity-70 font-bold">⚙️ Settings</a>
+        <Link href="/analyzer" className="hover:opacity-70 font-bold">
+            📄 Resume Analyzer
+        </Link>
+
+        <Link href="/analytics" className="hover:opacity-70 font-bold">
+          📊 Analytics
+        </Link>
+
+        <Link href="/insights" className="hover:opacity-70 font-bold">
+          🤖 AI Insights
+        </Link>
+
+        <Link href="/settings" className="hover:opacity-70 font-bold">
+          ⚙️ Settings
+        </Link>
       </nav>
 
       <div className="mt-auto text-xs opacity-60">

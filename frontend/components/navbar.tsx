@@ -13,7 +13,7 @@ export default function Navbar() {
       <div className="flex gap-6 font-medium items-center font-serif">
         <Link href="/">Home</Link>
         <Link href="/about">About</Link>
-        <Link href="/contact">Contact</Link>
+        <Link href="/cover_letter">Cover Letter</Link>
         <Link href="/login">Login</Link>
 
         <Link
