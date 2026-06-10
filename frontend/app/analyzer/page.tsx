@@ -213,8 +213,8 @@ return (
       <h2 className="text-xl font-bold mb-8">ATS Dashboard</h2>
 
       <nav className="flex flex-col gap-4 text-sm">
-        <Link href="/analyzer" className="hover:opacity-70 font-bold">
-            📄 Resume Analyzer
+        <Link href="/resume-builder" className="hover:opacity-70 font-bold">
+            📄 Resume-Builder
         </Link>
 
         <Link href="/analytics" className="hover:opacity-70 font-bold">

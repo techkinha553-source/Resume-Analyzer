@@ -13,29 +13,29 @@ export default function Home() {
         {/* Background Effects */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
 
-          <div className="absolute top-0 left-0 w-125 h-125 bg-sky-400/20 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-0 w-64 h-64 md:w-96 md:h-96 bg-sky-400/20 rounded-full blur-3xl" />
 
-          <div className="absolute top-1/2 right-0 w-112.5 h-112.5 bg-violet-500/20 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 right-0 w-64 h-64 md:w-80 md:h-80 bg-violet-500/20 rounded-full blur-3xl" />
 
-          <div className="absolute bottom-0 left-1/3 w-150 h-150 bg-indigo-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/3 w-72 h-72 md:w-150 md:h-150 bg-indigo-500/10 rounded-full blur-3xl" />
 
         </div>
 
-        <section className="relative z-10 text-center py-32 px-8 max-w-6xl mx-auto">
+        <section className="relative z-10 text-center py-20 md:py-32 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
 
-          <h1 className="text-6xl md:text-8xl font-black tracking-tight leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black tracking-tight leading-tight">
             Beat ATS Systems &
             <span className="bg-linear-to-r from-sky-400 via-blue-500 to-violet-500 bg-clip-text text-transparent">
               {" "}Get More Interviews
             </span>
           </h1>
 
-          <p className="mt-8 text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto">
+          <p className="mt-6 text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto">
             AI-powered resume intelligence,
             recruiter insights and interview preparation.
           </p>
 
-          <div className="mt-10 flex justify-center gap-4">
+          <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
 
             <Link
               href="/login"
@@ -44,8 +44,9 @@ export default function Home() {
                           from-sky-500
                           to-violet-500
                           text-white
-                          px-10
+                          px-8 sm:px-10
                           py-4
+                          text-center
                           rounded-2xl
                           font-semibold
                           shadow-lg
@@ -68,10 +69,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="max-w-6xl mx-auto grid md:grid-cols-4 gap-6 p-10">
+        <section className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 sm:px-6 lg:px-10 py-10">
 
           <div className="
-                          p-8
+                          p-6 md:p-8
                           rounded-3xl
                           border
                           border-white/10
@@ -86,7 +87,7 @@ export default function Home() {
           </div>
 
           <div className="
-                          p-8
+                          p-6 md:p-8
                           rounded-3xl
                           border
                           border-white/10
@@ -101,7 +102,7 @@ export default function Home() {
           </div>
 
           <div className="
-                          p-8
+                          p-6 md:p-8
                           rounded-3xl
                           border
                           border-white/10
@@ -116,7 +117,7 @@ export default function Home() {
           </div>
 
           <div className="
-                          p-8
+                          p-6 md:p-8
                           rounded-3xl
                           border
                           border-white/10
@@ -132,26 +133,26 @@ export default function Home() {
 
         </section>
 
-        <section className="relative z-10 max-w-5xl mx-auto px-8 py-5">
+        <section className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
 
             <div className="text-center">
-              <h3 className="text-5xl font-bold text-sky-400">95%</h3>
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-sky-400">95%</h3>
               <p className="text-slate-400 mt-2">
                 ATS Accuracy
               </p>
             </div>
 
             <div className="text-center">
-              <h3 className="text-5xl font-bold text-violet-400">10K+</h3>
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-violet-400">10K+</h3>
               <p className="text-slate-400 mt-2">
                 Resumes Analyzed
               </p>
             </div>
 
             <div className="text-center">
-              <h3 className="text-5xl font-bold text-green-400">3x</h3>
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-green-400">3x</h3>
               <p className="text-slate-400 mt-2">
                 More Interview Calls
               </p>
@@ -159,6 +160,78 @@ export default function Home() {
 
           </div>
 
+        </section>
+
+        <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Trusted by Job Seekers Worldwide
+            </h2>
+            <p className="text-slate-400 mt-3">
+              Real improvements. Real interview opportunities.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 md:p-10 text-center">
+            <div className="text-yellow-400 text-2xl mb-4">★★★★★</div>
+
+            <p className="text-xl md:text-2xl font-medium text-slate-200 italic">
+              &quot;Helped me improve my ATS score from 62% to 91%&quot;
+            </p>
+
+            <p className="mt-6 text-slate-400">
+              — Software Engineer
+            </p>
+          </div>
+        </section>
+
+        <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold">
+              Optimized for Modern ATS Systems
+            </h2>
+
+            <p className="text-slate-400 mt-3">
+              Built to help candidates align with hiring standards used by leading tech companies.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 text-center font-semibold text-slate-300 hover:bg-white/10 transition-all">
+              Google
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 text-center font-semibold text-slate-300 hover:bg-white/10 transition-all">
+              Amazon
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 text-center font-semibold text-slate-300 hover:bg-white/10 transition-all">
+              Microsoft
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 text-center font-semibold text-slate-300 hover:bg-white/10 transition-all">
+              Netflix
+            </div>
+          </div>
+        </section>
+
+        <section className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <div className="rounded-4xl border border-white/10 bg-white/5 backdrop-blur-xl p-10 md:p-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              Ready to Improve Your Resume?
+            </h2>
+
+            <p className="text-slate-400 max-w-2xl mx-auto mb-8">
+              Upload your resume, receive AI-powered insights, improve ATS compatibility, and increase your chances of landing interviews.
+            </p>
+
+            <Link
+              href="/login"
+              className="inline-flex bg-linear-to-r from-sky-500 to-violet-500 px-8 py-4 rounded-2xl font-semibold shadow-lg shadow-sky-500/30 hover:scale-105 transition-all duration-300"
+            >
+              Analyze Resume
+            </Link>
+          </div>
         </section>
 
       </main>

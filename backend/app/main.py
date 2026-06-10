@@ -1,13 +1,15 @@
+from dotenv import load_dotenv
+load_dotenv()
 from fastapi import FastAPI
 from app.routes.resume import router
 from fastapi.middleware.cors import CORSMiddleware
-from dotenv import load_dotenv
 from app.routes.auth import router as auth_router
+from app.routes.resume_builder import router as resume_builder_router
 
-load_dotenv()
 
 app = FastAPI()
 app.include_router(auth_router, prefix="/auth")
+app.include_router(resume_builder_router)
 
 app.add_middleware(
     CORSMiddleware,
